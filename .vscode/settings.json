@@ -1,0 +1,7 @@
+{
+    "ipynb.pasteImagesAsAttachments.enabled": false,
+    "reactSnippets.settings.prettierEnabled": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+    "vscodeReactRefactor.babelPlugins": "objectRestSpread, classProperties, typescript, jsx, tsx"
+}
