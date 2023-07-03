@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import "./globals.css";
+import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/config/site";
@@ -10,6 +10,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({

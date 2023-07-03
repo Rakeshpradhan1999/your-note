@@ -44,7 +44,7 @@ export function SiteHeader() {
                 <DropdownMenuTrigger className="">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={data?.user?.image || ""} alt="" />
-                    <AvatarFallback>{data?.user.name}</AvatarFallback>
+                    <AvatarFallback>{data?.user.name[0]}</AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">

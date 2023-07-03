@@ -1,15 +1,17 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { PlusSquare } from "lucide-react";
-import { Plus, PlusCircle, PlusIcon } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 const Dashboard = () => {
   return (
     <div>
-      <Link href={"dashboard/create"} className={cn(buttonVariants())}>
-        Create Note <PlusSquare className="ml-2 w-5 h-5 text-gray-600" />
+      <Link
+        href={"dashboard/create"}
+        className={cn(buttonVariants({ variant: "secondary" }))}
+      >
+        Create Note <PlusCircle className="ml-2 w-5 h-5 " />
       </Link>
     </div>
   );
