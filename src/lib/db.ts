@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 let connection: any = null;
 const poolsize = 10;
 export const connectToDatabase = async () => {
-  if (!process.env.DATABASE_URL)
+  if (!process.env.MONGO)
     throw new Error("MongoDB connection string not found");
   if (
     connection === null ||
@@ -18,7 +18,7 @@ export const connectToDatabase = async () => {
     });
 
     try {
-      mongoose.connect(process.env.DATABASE_URL);
+      mongoose.connect(process.env.MONGO);
     } catch (err) {
       console.log("Mongoose connection error", err);
     }

@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@bomdi/codebox':
     specifier: ^2.0.0
@@ -52,6 +56,9 @@ dependencies:
   '@tailwindcss/typography':
     specifier: ^0.5.9
     version: registry.npmjs.org/@tailwindcss/typography@0.5.9(tailwindcss@3.3.2)
+  '@tanstack/react-query':
+    specifier: ^4.29.19
+    version: registry.npmjs.org/@tanstack/react-query@4.29.19(react-dom@18.2.0)(react@18.2.0)
   '@types/node':
     specifier: 20.3.2
     version: registry.npmjs.org/@types/node@20.3.2
@@ -2205,6 +2212,33 @@ packages:
       lodash.merge: registry.npmjs.org/lodash.merge@4.6.2
       postcss-selector-parser: registry.npmjs.org/postcss-selector-parser@6.0.10
       tailwindcss: registry.npmjs.org/tailwindcss@3.3.2
+    dev: false
+
+  registry.npmjs.org/@tanstack/query-core@4.29.19:
+    resolution: {integrity: sha512-uPe1DukeIpIHpQi6UzIgBcXsjjsDaLnc7hF+zLBKnaUlh7jFE/A+P8t4cU4VzKPMFB/C970n/9SxtpO5hmIRgw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@tanstack/query-core/-/query-core-4.29.19.tgz}
+    name: '@tanstack/query-core'
+    version: 4.29.19
+    dev: false
+
+  registry.npmjs.org/@tanstack/react-query@4.29.19(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-XiTIOHHQ5Cw1WUlHaD4fmVUMhoWjuNJlAeJGq7eM4BraI5z7y8WkZO+NR8PSuRnQGblpuVdjClQbDFtwxTtTUw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@tanstack/react-query/-/react-query-4.29.19.tgz}
+    id: registry.npmjs.org/@tanstack/react-query/4.29.19
+    name: '@tanstack/react-query'
+    version: 4.29.19
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': registry.npmjs.org/@tanstack/query-core@4.29.19
+      react: registry.npmjs.org/react@18.2.0
+      react-dom: registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
+      use-sync-external-store: registry.npmjs.org/use-sync-external-store@1.2.0(react@18.2.0)
     dev: false
 
   registry.npmjs.org/@types/json5@0.0.29:
@@ -5781,6 +5815,17 @@ packages:
       detect-node-es: registry.npmjs.org/detect-node-es@1.1.0
       react: registry.npmjs.org/react@18.2.0
       tslib: registry.npmjs.org/tslib@2.6.0
+    dev: false
+
+  registry.npmjs.org/use-sync-external-store@1.2.0(react@18.2.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz}
+    id: registry.npmjs.org/use-sync-external-store/1.2.0
+    name: use-sync-external-store
+    version: 1.2.0
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: registry.npmjs.org/react@18.2.0
     dev: false
 
   registry.npmjs.org/util-deprecate@1.0.2:

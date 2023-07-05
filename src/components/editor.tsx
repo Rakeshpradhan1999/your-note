@@ -1,5 +1,5 @@
 "use client";
-import { NoteValidator } from "@/lib/validators/note";
+import { NoteCreationRequest, NoteValidator } from "@/lib/validators/note";
 import EditorJS from "@editorjs/editorjs";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,6 +7,9 @@ import { z } from "zod";
 import TextareaAutosize from "react-textarea-autosize";
 import "@/styles/editorjs.css";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Button } from "./ui/button";
+import { useMutation } from "@tanstack/react-query";
+import { createNoteRequest } from "@/services/note.service";
 type FormData = z.infer<typeof NoteValidator>;
 const Edior = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -43,16 +46,15 @@ const Edior = () => {
         },
         placeholder: "Type here to write your note...",
         inlineToolbar: true,
-        data: { blocks: [] },
+        // data: { blocks: [] },
         tools: {
           header: Header,
-
-          linkTool: {
-            class: LinkTool,
-            config: {
-              endpoint: "/api/link",
-            },
-          },
+          // linkTool: {
+          //   class: LinkTool,
+          //   config: {
+          //     endpoint: "/api/link",
+          //   },
+          // },
           // image: {
           //   class: ImageTool,
           //   config: {
@@ -80,6 +82,14 @@ const Edior = () => {
       });
     }
   }, []);
+  const { mutate: createNote, isLoading } = useMutation({
+    mutationFn: createNoteRequest,
+    onSuccess: (data) => {
+      console.log(data);
+      // Invalidate and refetch
+      // queryClient.invalidateQueries({ queryKey: ['todos'] })
+    },
+  });
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -108,30 +118,31 @@ const Edior = () => {
   async function onSubmit(data: FormData) {
     const blocks = await ref.current?.save();
     console.log(blocks);
-    // const payload: PostCreationRequest = {
-    //   title: data.title,
-    //   content: blocks,
-    //   subredditId,
-    // }
-
+    // console.log(data);
+    const payload: NoteCreationRequest = {
+      title: data.title,
+      content: blocks,
+    };
+    createNote(payload);
     // createPost(payload)
   }
   if (!isMounted) {
     return null;
   }
-  const { ref: titleRef, ...rest } = register("title");
+  // const { ref: titleRef } = register("title");
   return (
-    <div className="max-w-[600px] mx-auto">
+    <div className="max-w-[600px] mx-auto pb-10">
       <form onSubmit={handleSubmit(onSubmit)} id="create-note-form ">
-        <div className="prose prose-stone dark:prose-invert ">
+        <div className="prose prose-stone dark:prose-invert mb-2 ">
           <TextareaAutosize
             placeholder="Title"
+            {...register("title")}
             autoFocus
             defaultValue="Untitled Note"
             className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl font-bold focus:outline-none"
           />
-          <div id="editor" className="min-h-[500px]" />
-          <p className="text-sm text-gray-500">
+          <div id="editor" className="min-h-[400px]" />
+          <p className="text-sm text-gray-500 mb-4">
             Use{" "}
             <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">
               Tab
@@ -139,6 +150,7 @@ const Edior = () => {
             to open the command menu.
           </p>
         </div>
+        <Button className="w-full">Save</Button>
       </form>
     </div>
   );

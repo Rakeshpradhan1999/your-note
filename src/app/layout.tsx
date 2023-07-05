@@ -1,9 +1,8 @@
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
-import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/config/site";
-import AuthProvider from "@/components/providers/authprovider";
+
+import { Providers } from "@/components/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <AuthProvider>
-            {/* <SiteHeader /> */}
-            {children}
-          </AuthProvider>
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
