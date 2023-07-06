@@ -10,7 +10,7 @@ export const POST = async (req: NextRequest) => {
     const session = await getAuthSession();
 
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "User not found" }), 404;
+      return NextResponse.json({ error: "Not Authorized" }), 401;
     }
     await connectToDatabase();
 
@@ -33,7 +33,7 @@ export const GET = async (req: NextRequest) => {
     const session = await getAuthSession();
 
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "User not found" }), 404;
+      return NextResponse.json({ error: "Not Authorized" }), 401;
     }
     await connectToDatabase();
     const notes = await NoteModel.find({ userId: session.user.id }).sort({

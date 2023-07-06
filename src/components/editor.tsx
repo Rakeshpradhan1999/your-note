@@ -10,6 +10,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { useMutation } from "@tanstack/react-query";
 import { createNoteRequest } from "@/services/note.service";
+import { useRouter } from "next/navigation";
+import { useToast } from "./ui/use-toast";
 type FormData = z.infer<typeof NoteValidator>;
 const Edior = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -24,6 +26,8 @@ const Edior = () => {
       content: null,
     },
   });
+  const { toast } = useToast();
+  const router = useRouter();
   const ref = useRef<EditorJS>();
   const _titleRef = useRef<HTMLTextAreaElement>(null);
   const initializeEditor = useCallback(async () => {
@@ -86,6 +90,13 @@ const Edior = () => {
     mutationFn: createNoteRequest,
     onSuccess: (data) => {
       console.log(data);
+      toast({
+        title: "Success",
+        description: "Your note saved.",
+      });
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 100);
       // Invalidate and refetch
       // queryClient.invalidateQueries({ queryKey: ['todos'] })
     },
@@ -150,7 +161,9 @@ const Edior = () => {
             to open the command menu.
           </p>
         </div>
-        <Button className="w-full">Save</Button>
+        <Button isLoading={isLoading} className="w-full">
+          Save
+        </Button>
       </form>
     </div>
   );
