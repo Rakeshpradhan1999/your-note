@@ -26,7 +26,7 @@ interface IEditorProps {
   _id?: string;
   title?: string;
   content?: string;
-  refetch: () => void;
+  refetch?: () => void;
 }
 
 const Edior = ({ _id, title, content, refetch }: IEditorProps) => {
@@ -106,7 +106,7 @@ const Edior = ({ _id, title, content, refetch }: IEditorProps) => {
         description: "Your note updated.",
       });
       setTimeout(() => {
-        refetch();
+        refetch && refetch();
       }, 100);
     },
   });
