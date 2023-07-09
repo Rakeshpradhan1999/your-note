@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { MainNav } from "@/components/main-nav";
 import { ModeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { LayoutDashboard, LogOut } from "lucide-react";
+import { Edit2, LayoutDashboard, List, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 export function SiteHeader() {
   const { data, status } = useSession();
@@ -44,14 +44,14 @@ export function SiteHeader() {
                 <DropdownMenuTrigger className="">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={data?.user?.image || ""} alt="" />
-                    <AvatarFallback>{data?.user.name[0]}</AvatarFallback>
+                    <AvatarFallback>{data?.user?.name?.[0]}</AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel className="flex items-center">
                     <Avatar className="h-8 w-8 mr-2">
                       <AvatarImage src={data?.user?.image || ""} alt="" />
-                      <AvatarFallback>{data?.user?.name[0]}</AvatarFallback>
+                      <AvatarFallback>{data?.user?.name?.[0]}</AvatarFallback>
                     </Avatar>
                     <div>
                       {data?.user?.name}
@@ -60,13 +60,24 @@ export function SiteHeader() {
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
+                    onClick={() => router.push("/dashboard/create")}
+                    className="cursor-pointer"
+                  >
+                    <Edit2 className="mr-2 h-4 w-4" />
+                    <span>Create Note</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
                     onClick={() => router.push("/dashboard")}
                     className="cursor-pointer"
                   >
-                    <LayoutDashboard className="mr-2 h-4 w-4" />
-                    <span>Dashboard</span>
+                    <List className="mr-2 h-4 w-4" />
+                    <span>All notes</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer">
+
+                  <DropdownMenuItem
+                    onClick={() => signOut()}
+                    className="cursor-pointer"
+                  >
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Log out</span>
                   </DropdownMenuItem>

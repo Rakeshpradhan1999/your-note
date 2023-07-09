@@ -13,3 +13,8 @@ export const NoteValidator = z.object({
 });
 
 export type NoteCreationRequest = z.infer<typeof NoteValidator>;
+export type NoteUpdateRequest = {
+  title: string;
+  content: string;
+  id: string;
+};

@@ -2,9 +2,18 @@
 import { getNotesRequest } from "@/services/note.service";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import EditorRender from "./editor-render";
 import NotesSkeleton from "./skelitons/notes-skeliton";
+import { Button } from "./ui/button";
+import { DeleteIcon, Edit, Trash, Trash2, Trash2Icon } from "lucide-react";
+import Link from "next/link";
 
 interface INote {
   title: string;
@@ -21,18 +30,20 @@ const Notes = () => {
       {isLoading ? (
         <NotesSkeleton />
       ) : (
-        <div className="grid grid-cols-4 gap-6 mt-10">
+        <div className="grid  sm:grid-cols-2 md:grid-cols-4 gap-6 mt-10">
           {data?.data?.map((note: INote) => (
-            <Card key={note._id}>
-              <CardHeader>
-                <CardTitle className="text-xl">{note.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="max-h-[150px] overflow-y-hidden">
-                  <EditorRender content={note.content} />
-                </div>
-              </CardContent>
-            </Card>
+            <Link href={`/dashboard/note/${note._id}`} key={note._id}>
+              <Card key={note._id} className="flex flex-col">
+                <CardHeader>
+                  <CardTitle className="text-xl">{note.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1">
+                  <div className="h-[150px] overflow-y-hidden">
+                    <EditorRender content={note.content} />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       )}

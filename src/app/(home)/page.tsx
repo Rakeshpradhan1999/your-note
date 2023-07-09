@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import GetStarted from "@/components/getStarted-button";
 
 export default function Home() {
   return (
@@ -9,9 +9,9 @@ export default function Home() {
         </h1>
         <p className="max-w-[600px]  text-muted-foreground">
           Your Note is a simple note taking app built with Next js, TypeScript,
-          Tailwind CSS, Shadcn and mongodb.
+          Tailwind CSS, Shadcn/UI and mongodb.
         </p>
-        <Button className="max-w-max mx-auto">Get Started</Button>
+        <GetStarted />
       </div>
     </section>
   );
