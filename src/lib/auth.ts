@@ -9,8 +9,9 @@ export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      clientId:
+        "377196079608-9kliqcqu56ep9v8j3hou4jv4c04voak1.apps.googleusercontent.com",
+      clientSecret: "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",
     }),
   ],
   session: {
