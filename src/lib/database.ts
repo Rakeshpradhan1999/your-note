@@ -1,11 +1,11 @@
 // This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
 import { MongoClient } from "mongodb";
 
-if (!process.env.MONGO) {
-  throw new Error('Invalid/Missing environment variable: "MONGO"');
+if (!process.env.NEXT_PUBLIC_MONGO) {
+  throw new Error('Invalid/Missing environment variable: "NEXT_PUBLIC_MONGO"');
 }
 
-const uri = process.env.MONGO;
+const uri = process.env.NEXT_PUBLIC_MONGO;
 const options = {};
 
 let client;
