@@ -38,5 +38,6 @@ export const authOptions: NextAuthOptions = {
       return { name, id: _id, email, picture: image };
     },
   },
+  debug: true,
 };
 export const getAuthSession = () => getServerSession(authOptions);
