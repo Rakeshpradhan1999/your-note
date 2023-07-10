@@ -5,13 +5,16 @@ import { NextAuthOptions, getServerSession } from "next-auth";
 import UserModel from "@/models/UserModel";
 import { connectToDatabase } from "./db";
 // import UserModel from "@/models/UserModel";
+
+if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+  throw new Error("Missing Google Client ID or Secret");
+}
 export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
-      clientId:
-        "377196079608-9kliqcqu56ep9v8j3hou4jv4c04voak1.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   session: {
