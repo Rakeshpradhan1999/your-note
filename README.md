@@ -25,3 +25,4 @@ NEXTAUTH_URL =
 
 NEXTAUTH_SECRET =
 ```
+## Please put a star if u find it helpfull
